@@ -304,7 +304,48 @@
 
         <div class="order-section">
             <!-- Formspree Integration for direct Gmail delivery -->
-            <form action="https://formspree.io/f/ritakhan12345678910@gmail.com" method="POST" class="order-form">
+            
+            <form action="https://formsubmit.co/ritakhan12345678910@gmail.com" method="POST" class="order-form">
+    <!-- রিডাইরেক্ট এবং থ্যাঙ্ক ইউ মেসেজ কনফিগারেশন -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="নতুন অনলাইন সার্ভিস অর্ডার এসেছে!">
+    <input type="hidden" name="_template" value="table">
+
+    <div class="form-group">
+        <label for="name">ক্লায়েন্টের নাম *</label>
+        <input type="text" id="name" name="Client_Name" placeholder="আপনার নাম লিখুন" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">ইমেইল ঠিকানা *</label>
+        <input type="email" id="email" name="Client_Email" placeholder="example@gmail.com" required>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">ফোন / WhatsApp নম্বর *</label>
+        <input type="tel" id="phone" name="Client_Phone" placeholder="017XXXXXXXX" required>
+    </div>
+
+    <div class="form-group">
+        <label for="service">পছন্দের সেবা / এক্সপার্ট নির্বাচন করুন *</label>
+        <select id="service" name="Selected_Service" required>
+            <option value="">ক্যাটাগরি বেছে নিন...</option>
+            <option value="Web Development">ওয়েব ডেভেলপমেন্ট (Web Development)</option>
+            <option value="Graphics Design">গ্রাফিক ডিজাইন (Graphics Design)</option>
+            <option value="Digital Marketing">ডিজিটাল মার্কেটিং (Digital Marketing)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="message">প্রজেক্ট সম্পর্কে বিস্তারিত লিখুন</label>
+        <textarea id="message" name="Project_Details" rows="4" placeholder="আপনার কেমন ডিজাইন বা কাজ দরকার তা বিস্তারিত জানান..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem;">
+        <i class="fa-solid fa-paper-plane"></i> সরাসরি ইমেইলে অর্ডার সাবমিট করুন
+    </button>
+</form>
+        
                 <div class="form-group">
                     <label for="name">ক্লায়েন্টের নাম *</label>
                     <input type="text" id="name" name="Client Name" placeholder="আপনার নাম লিখুন" required>
@@ -317,7 +358,7 @@
 
                 <div class="form-group">
                     <label for="phone">ফোন / WhatsApp নম্বর</label>
-                    <input type="tel" id="phone" name="Client Phone" placeholder="017XXXXXXXX">
+                    <input type="tel" id="phone" name="Client Phone" placeholder="01878911403">
                 </div>
 
                 <div class="form-group">
