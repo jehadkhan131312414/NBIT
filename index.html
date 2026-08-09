@@ -1,46 +1,354 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <title>আমার পোর্টফোলিও</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      text-align: center;
-      padding: 50px;
-    }
-    .portfolio {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    h1 { color: #333; }
-    ul { list-style-type: none; padding: 0; }
-    li {
-      background: #007bff;
-      color: white;
-      margin: 5px 0;
-      padding: 10px;
-      border-radius: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পেশাদার ফ্রিল্যান্সিং টিম ও পোর্টফোলিও | NBIT</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0066ff;
+            --secondary-color: #0052cc;
+            --whatsapp-color: #25D366;
+            --bg-color: #f4f7fe;
+            --card-bg: #ffffff;
+            --text-color: #2b3674;
+            --text-muted: #707eae;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--card-bg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #0066ff 0%, #0043a8 100%);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+        }
+
+        .hero h1 { font-size: 2.3rem; margin-bottom: 0.8rem; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto 1.5rem; }
+
+        .section {
+            max-width: 1100px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Team Experts Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid #e9edf7;
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.15);
+        }
+
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            background-color: #e2ecff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        .role-badge {
+            background: #e6f0ff;
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        .rating {
+            color: #ffc107;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-primary { background-color: var(--primary-color); color: white; }
+        .btn-primary:hover { background-color: var(--secondary-color); }
+
+        .btn-whatsapp { background-color: var(--whatsapp-color); color: white; margin-top: 0.5rem; }
+        .btn-whatsapp:hover { background-color: #1eb956; }
+
+        /* Order Form */
+        .order-section {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label { font-weight: 600; }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.8rem 1rem;
+            border: 1px solid #e0e5f2;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        footer {
+            background-color: #0b1437;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 1rem; }
+            .hero h1 { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
-  <div class="portfolio">
-    <h1>আমার ফ্রিল্যান্সিং পোর্টফোলিও</h1>
-    <p>হ্যালো! আমি একজন পেশাদার ফ্রিল্যান্সার।</p>
-    <h2>আমার সেবাসমূহ</h2>
-    <ul>
-      <li>ওয়েব ডিজাইন ও ডেভেলপমেন্ট</li>
-      <li>গ্রাফিক ডিজাইন</li>
-      <li>ডিজিটাল মার্কেটিং</li>
-    </ul>
-    <h2>যোগাযোগ করুন</h2>
-    <p>ইমেইল: ritakhan12345678910@gmail.com</p>
-  </div>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo"><i class="fa-solid fa-layer-group"></i> NBIT Agency</a>
+            <ul class="nav-links">
+                <li><a href="#experts">আমাদের ফ্রিল্যান্সারগণ</a></li>
+                <li><a href="#order">জিমেইলে অর্ডার করুন</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>আমাদের দক্ষ ফ্রিল্যান্সার টিম বেছে নিন</h1>
+        <p>ওয়েব ডেভেলপমেন্ট, গ্রাফিক ডিজাইন এবং ডিজিটাল মার্কেটিংয়ের জন্য সেরা এক্সপার্ট বেছে নিয়ে সরাসরি ওয়েবসাইট থেকে অর্ডার সাবমিট করুন।</p>
+    </section>
+
+    <!-- Team Members / Experts Section -->
+    <section class="section" id="experts">
+        <h2 class="section-title">আমাদের এক্সপার্ট ফ্রিল্যান্সারগণ</h2>
+        <p class="section-subtitle">আপনার প্রয়োজনীয় ক্যাটাগরি অনুযায়ী ফ্রিল্যান্সারের সার্ভিস বেছে নিন</p>
+
+        <div class="team-grid">
+            <!-- Expert 1: Web Developer -->
+            <div class="team-card">
+                <div class="profile-img"><i class="fa-solid fa-code"></i></div>
+                <h3>ওয়েব ডেভেলপার এক্সপার্ট</h3>
+                <span class="role-badge">Web Development</span>
+                <p>রেসপন্সিভ ওয়েবসাইট, ই-কমার্স ও পোর্টফোলিও ওয়েবসাইট তৈরির বিশেষজ্ঞ।</p>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (5.0)
+                </div>
+                <a href="#order" onclick="selectExpert('Web Development')" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> ওয়েবসাইট অর্ডার দিন</a>
+                <a href="https://wa.me/8801700000000?text=I%20want%20Web%20Development%20service" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp চ্যাট</a>
+            </div>
+
+            <!-- Expert 2: Graphic Designer -->
+            <div class="team-card">
+                <div class="profile-img"><i class="fa-solid fa-palette"></i></div>
+                <h3>গ্রাফিক ডিজাইন এক্সপার্ট</h3>
+                <span class="role-badge">Graphics Design</span>
+                <p>লোগো ডিজাইন, সোশ্যাল মিডিয়া ব্যানার, ফ্লাইয়ার ও ব্র্যান্ডিং ডিজাইন করে থাকি।</p>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (4.9)
+                </div>
+                <a href="#order" onclick="selectExpert('Graphics Design')" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> ডিজাইন অর্ডার দিন</a>
+                <a href="https://wa.me/8801700000000?text=I%20want%20Graphics%20Design%20service" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp চ্যাট</a>
+            </div>
+
+            <!-- Expert 3: Digital Marketer -->
+            <div class="team-card">
+                <div class="profile-img"><i class="fa-solid fa-bullhorn"></i></div>
+                <h3>ডিজিটাল মার্কেটিং এক্সপার্ট</h3>
+                <span class="role-badge">Digital Marketing</span>
+                <p>ফেসবুক অ্যাডস, গুগল প্রোমোশন, এসইও (SEO) ও সেলস বৃদ্ধির সেরা সমাধান।</p>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (5.0)
+                </div>
+                <a href="#order" onclick="selectExpert('Digital Marketing')" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> মার্কেটিং অর্ডার দিন</a>
+                <a href="https://wa.me/8801700000000?text=I%20want%20Digital%20Marketing%20service" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp চ্যাট</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gmail Order Form Section -->
+    <section class="section" id="order">
+        <h2 class="section-title">জিমেইলে সরাসরি অর্ডার পাঠান</h2>
+        <p class="section-subtitle">ফর্মটি সাবমিট করলে তথ্যগুলো সরাসরি আপনার ইমেইলে (ritakhan12345678910@gmail.com) চলে যাবে</p>
+
+        <div class="order-section">
+            <!-- Formspree Integration for direct Gmail delivery -->
+            <form action="https://formspree.io/f/ritakhan12345678910@gmail.com" method="POST" class="order-form">
+                <div class="form-group">
+                    <label for="name">ক্লায়েন্টের নাম *</label>
+                    <input type="text" id="name" name="Client Name" placeholder="আপনার নাম লিখুন" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">ইমেইল ঠিকানা *</label>
+                    <input type="email" id="email" name="Client Email" placeholder="example@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">ফোন / WhatsApp নম্বর</label>
+                    <input type="tel" id="phone" name="Client Phone" placeholder="017XXXXXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="service">পছন্দের সেবা / এক্সপার্ট নির্বাচন করুন *</label>
+                    <select id="service" name="Selected Service" required>
+                        <option value="">ক্যাটাগরি বেছে নিন...</option>
+                        <option value="Web Development">ওয়েব ডেভেলপমেন্ট (Web Development)</option>
+                        <option value="Graphics Design">গ্রাফিক ডিজাইন (Graphics Design)</option>
+                        <option value="Digital Marketing">ডিজিটাল মার্কেটিং (Digital Marketing)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">প্রজেক্ট সম্পর্কে বিস্তারিত লিখুন</label>
+                    <textarea id="message" name="Project Details" rows="4" placeholder="আপনার কেমন ডিজাইন বা কাজ দরকার তা বিস্তারিত জানান..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem;"><i class="fa-solid fa-paper-plane"></i> সরাসরি ইমেইলে অর্ডার সাবমিট করুন</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 NBIT Freelance Agency. সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <script>
+        // Auto select service when clicking order button from team section
+        function selectExpert(serviceName) {
+            document.getElementById('service').value = serviceName;
+        }
+    </script>
 </body>
 </html>
