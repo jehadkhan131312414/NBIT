@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>পেশাদার ফ্রিল্যান্সিং টিম ও পোর্টফোলিও | NBIT</title>
+    <title>Md Jehadul Islam | Founder & Team Captain - NBIT</title>
     <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
         }
 
         body {
@@ -69,23 +69,78 @@
             transition: 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
+        .nav-links a:hover { color: var(--primary-color); }
 
-        .hero {
+        /* Captain Hero Section */
+        .captain-hero {
             max-width: 1100px;
-            margin: 2rem auto;
+            margin: 3rem auto;
             padding: 3rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, #0066ff 0%, #0043a8 100%);
-            color: white;
+            background: var(--card-bg);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            border: 1px solid #e9edf7;
         }
 
-        .hero h1 { font-size: 2.3rem; margin-bottom: 0.8rem; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto 1.5rem; }
+        .captain-img-box {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .captain-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.2);
+        }
+
+        .captain-badge {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .captain-info h1 {
+            font-size: 2.2rem;
+            color: var(--text-color);
+            margin-bottom: 0.3rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .captain-title {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .captain-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
         .section {
             max-width: 1100px;
@@ -127,16 +182,16 @@
             box-shadow: 0 10px 25px rgba(0, 102, 255, 0.15);
         }
 
-        .profile-img {
-            width: 90px;
-            height: 90px;
+        .profile-icon {
+            width: 80px;
+            height: 80px;
             background-color: #e2ecff;
             color: var(--primary-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin: 0 auto 1rem;
         }
 
@@ -149,11 +204,6 @@
             font-weight: 600;
             display: inline-block;
             margin-bottom: 0.8rem;
-        }
-
-        .rating {
-            color: #ffc107;
-            margin: 0.5rem 0 1rem;
         }
 
         .btn {
@@ -174,7 +224,7 @@
         .btn-primary { background-color: var(--primary-color); color: white; }
         .btn-primary:hover { background-color: var(--secondary-color); }
 
-        .btn-whatsapp { background-color: var(--whatsapp-color); color: white; margin-top: 0.5rem; }
+        .btn-whatsapp { background-color: var(--whatsapp-color); color: white; }
         .btn-whatsapp:hover { background-color: #1eb956; }
 
         /* Order Form */
@@ -211,12 +261,6 @@
             outline: none;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary-color);
-        }
-
         footer {
             background-color: #0b1437;
             color: white;
@@ -227,7 +271,8 @@
 
         @media (max-width: 768px) {
             .navbar { flex-direction: column; gap: 1rem; }
-            .hero h1 { font-size: 1.8rem; }
+            .captain-hero { flex-direction: column; text-align: center; gap: 2rem; }
+            .hero-btns { justify-content: center; }
         }
     </style>
 </head>
@@ -238,132 +283,97 @@
         <nav class="navbar">
             <a href="#" class="logo"><i class="fa-solid fa-layer-group"></i> NBIT Agency</a>
             <ul class="nav-links">
-                <li><a href="#experts">আমাদের ফ্রিল্যান্সারগণ</a></li>
-                <li><a href="#order">জিমেইলে অর্ডার করুন</a></li>
+                <li><a href="#about">পরিচয়</a></li>
+                <li><a href="#experts">টিম সার্ভিসেস</a></li>
+                <li><a href="#order">অর্ডার করুন</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>আমাদের দক্ষ ফ্রিল্যান্সার টিম বেছে নিন</h1>
-        <p>ওয়েব ডেভেলপমেন্ট, গ্রাফিক ডিজাইন এবং ডিজিটাল মার্কেটিংয়ের জন্য সেরা এক্সপার্ট বেছে নিয়ে সরাসরি ওয়েবসাইট থেকে অর্ডার সাবমিট করুন।</p>
+    <!-- Captain Profile Section -->
+    <section class="captain-hero" id="about">
+        <div class="captain-img-box">
+            <!-- আপনার ছবির লিংক নিচে src="..." এর ভেতর বসাবেন -->
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" alt="Md Jehadul Islam" class="captain-img">
+            <div class="captain-badge"><i class="fa-solid fa-crown"></i> Team Captain</div>
+        </div>
+        <div class="captain-info">
+            <h1>Md Jehadul Islam</h1>
+            <p class="captain-title"><i class="fa-solid fa-user-check"></i> Team Captain & Professional Freelancer</p>
+            <p class="captain-desc">
+                Hi, I am Md Jehadul Islam, an experienced freelancer with a proven track record of delivering high-quality results. With years of hands-on experience in my field, I help businesses and individuals achieve their goals through reliable, efficient, and tailored solutions. My focus is on clear communication, attention to detail, and meeting project deadlines consistently. Let's connect and discuss how I can bring value to your next project.
+            </p>
+            <div class="hero-btns">
+                <a href="#order" class="btn btn-primary" style="width: auto;"><i class="fa-solid fa-paper-plane"></i> অর্ডার বা মেসেজ পাঠান</a>
+                <a href="https://wa.me/8801700000000?text=Hello%20Jehadul,%20I%20want%20to%20discuss%20a%20project." target="_blank" class="btn btn-whatsapp" style="width: auto;"><i class="fa-brands fa-whatsapp"></i> WhatsApp চ্যাট</a>
+            </div>
+        </div>
     </section>
 
     <!-- Team Members / Experts Section -->
     <section class="section" id="experts">
-        <h2 class="section-title">আমাদের এক্সপার্ট ফ্রিল্যান্সারগণ</h2>
-        <p class="section-subtitle">আপনার প্রয়োজনীয় ক্যাটাগরি অনুযায়ী ফ্রিল্যান্সারের সার্ভিস বেছে নিন</p>
+        <h2 class="section-title">আমাদের টিম এবং সেবাসমূহ</h2>
+        <p class="section-subtitle">আমাদের টিমে থাকা এক্সপার্টদের মাধ্যমে আপনার কাঙ্ক্ষিত সার্ভিসটি নিন</p>
 
         <div class="team-grid">
             <!-- Expert 1: Web Developer -->
             <div class="team-card">
-                <div class="profile-img"><i class="fa-solid fa-code"></i></div>
-                <h3>ওয়েব ডেভেলপার এক্সপার্ট</h3>
+                <div class="profile-icon"><i class="fa-solid fa-code"></i></div>
+                <h3>ওয়েব ডেভেলপমেন্ট</h3>
                 <span class="role-badge">Web Development</span>
-                <p>রেসপন্সিভ ওয়েবসাইট, ই-কমার্স ও পোর্টফোলিও ওয়েবসাইট তৈরির বিশেষজ্ঞ।</p>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (5.0)
-                </div>
-                <a href="#order" onclick="selectExpert('Web Development')" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> ওয়েবসাইট অর্ডার দিন</a>
-                <a href="https://wa.me/8801700000000?text=I%20want%20Web%20Development%20service" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp চ্যাট</a>
+                <p>রেসপন্সিভ ওয়েবসাইট, ই-কমার্স ও পোর্টফোলিও ওয়েবসাইট তৈরির সার্ভিস।</p>
+                <a href="#order" onclick="selectExpert('Web Development')" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-cart-shopping"></i> অর্ডার করুন</a>
             </div>
 
             <!-- Expert 2: Graphic Designer -->
             <div class="team-card">
-                <div class="profile-img"><i class="fa-solid fa-palette"></i></div>
-                <h3>গ্রাফিক ডিজাইন এক্সপার্ট</h3>
+                <div class="profile-icon"><i class="fa-solid fa-palette"></i></div>
+                <h3>গ্রাফিক ডিজাইন</h3>
                 <span class="role-badge">Graphics Design</span>
-                <p>লোগো ডিজাইন, সোশ্যাল মিডিয়া ব্যানার, ফ্লাইয়ার ও ব্র্যান্ডিং ডিজাইন করে থাকি।</p>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (4.9)
-                </div>
-                <a href="#order" onclick="selectExpert('Graphics Design')" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> ডিজাইন অর্ডার দিন</a>
-                <a href="https://wa.me/8801700000000?text=I%20want%20Graphics%20Design%20service" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp চ্যাট</a>
+                <p>লোগো ডিজাইন, সোশ্যাল মিডিয়া ব্যানার, ফ্লাইয়ার ও ব্র্যান্ডিং সার্ভিস।</p>
+                <a href="#order" onclick="selectExpert('Graphics Design')" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-cart-shopping"></i> অর্ডার করুন</a>
             </div>
 
             <!-- Expert 3: Digital Marketer -->
             <div class="team-card">
-                <div class="profile-img"><i class="fa-solid fa-bullhorn"></i></div>
-                <h3>ডিজিটাল মার্কেটিং এক্সপার্ট</h3>
+                <div class="profile-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                <h3>ডিজিটাল মার্কেটিং</h3>
                 <span class="role-badge">Digital Marketing</span>
-                <p>ফেসবুক অ্যাডস, গুগল প্রোমোশন, এসইও (SEO) ও সেলস বৃদ্ধির সেরা সমাধান।</p>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (5.0)
-                </div>
-                <a href="#order" onclick="selectExpert('Digital Marketing')" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> মার্কেটিং অর্ডার দিন</a>
-                <a href="https://wa.me/8801700000000?text=I%20want%20Digital%20Marketing%20service" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp চ্যাট</a>
+                <p>ফেসবুক অ্যাডস, গুগল প্রোমোশন, এসইও (SEO) ও সেলস বৃদ্ধির সার্ভিস।</p>
+                <a href="#order" onclick="selectExpert('Digital Marketing')" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-cart-shopping"></i> অর্ডার করুন</a>
             </div>
         </div>
     </section>
 
     <!-- Gmail Order Form Section -->
     <section class="section" id="order">
-        <h2 class="section-title">জিমেইলে সরাসরি অর্ডার পাঠান</h2>
-        <p class="section-subtitle">ফর্মটি সাবমিট করলে তথ্যগুলো সরাসরি আপনার ইমেইলে (ritakhan12345678910@gmail.com) চলে যাবে</p>
+        <h2 class="section-title">সরাসরি অর্ডার বা মেসেজ পাঠান</h2>
+        <p class="section-subtitle">মেসেজটি সরাসরি টিম ক্যাপ্টেন Md Jehadul Islam-এর ইমেইলে চলে যাবে</p>
 
         <div class="order-section">
-            <!-- Formspree Integration for direct Gmail delivery -->
-            
             <form action="https://formsubmit.co/ritakhan12345678910@gmail.com" method="POST" class="order-form">
-    <!-- রিডাইরেক্ট এবং থ্যাঙ্ক ইউ মেসেজ কনফিগারেশন -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="নতুন অনলাইন সার্ভিস অর্ডার এসেছে!">
-    <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="নতুন অনলাইন সার্ভিস অর্ডার এসেছে!">
+                <input type="hidden" name="_template" value="table">
 
-    <div class="form-group">
-        <label for="name">ক্লায়েন্টের নাম *</label>
-        <input type="text" id="name" name="Client_Name" placeholder="আপনার নাম লিখুন" required>
-    </div>
-
-    <div class="form-group">
-        <label for="email">ইমেইল ঠিকানা *</label>
-        <input type="email" id="email" name="Client_Email" placeholder="example@gmail.com" required>
-    </div>
-
-    <div class="form-group">
-        <label for="phone">ফোন / WhatsApp নম্বর *</label>
-        <input type="tel" id="phone" name="Client_Phone" placeholder="017XXXXXXXX" required>
-    </div>
-
-    <div class="form-group">
-        <label for="service">পছন্দের সেবা / এক্সপার্ট নির্বাচন করুন *</label>
-        <select id="service" name="Selected_Service" required>
-            <option value="">ক্যাটাগরি বেছে নিন...</option>
-            <option value="Web Development">ওয়েব ডেভেলপমেন্ট (Web Development)</option>
-            <option value="Graphics Design">গ্রাফিক ডিজাইন (Graphics Design)</option>
-            <option value="Digital Marketing">ডিজিটাল মার্কেটিং (Digital Marketing)</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="message">প্রজেক্ট সম্পর্কে বিস্তারিত লিখুন</label>
-        <textarea id="message" name="Project_Details" rows="4" placeholder="আপনার কেমন ডিজাইন বা কাজ দরকার তা বিস্তারিত জানান..."></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem;">
-        <i class="fa-solid fa-paper-plane"></i> সরাসরি ইমেইলে অর্ডার সাবমিট করুন
-    </button>
-</form>
-        
                 <div class="form-group">
-                    <label for="name">ক্লায়েন্টের নাম *</label>
-                    <input type="text" id="name" name="Client Name" placeholder="আপনার নাম লিখুন" required>
+                    <label for="name">আপনার নাম *</label>
+                    <input type="text" id="name" name="Client_Name" placeholder="আপনার নাম লিখুন" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">ইমেইল ঠিকানা *</label>
-                    <input type="email" id="email" name="Client Email" placeholder="example@gmail.com" required>
+                    <input type="email" id="email" name="Client_Email" placeholder="example@gmail.com" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">ফোন / WhatsApp নম্বর</label>
-                    <input type="tel" id="phone" name="Client Phone" placeholder="01878911403">
+                    <label for="phone">ফোন / WhatsApp নম্বর *</label>
+                    <input type="tel" id="phone" name="Client_Phone" placeholder="017XXXXXXXX" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="service">পছন্দের সেবা / এক্সপার্ট নির্বাচন করুন *</label>
-                    <select id="service" name="Selected Service" required>
+                    <label for="service">পছন্দের সেবা নির্বাচন করুন *</label>
+                    <select id="service" name="Selected_Service" required>
                         <option value="">ক্যাটাগরি বেছে নিন...</option>
                         <option value="Web Development">ওয়েব ডেভেলপমেন্ট (Web Development)</option>
                         <option value="Graphics Design">গ্রাফিক ডিজাইন (Graphics Design)</option>
@@ -373,27 +383,24 @@
 
                 <div class="form-group">
                     <label for="message">প্রজেক্ট সম্পর্কে বিস্তারিত লিখুন</label>
-                    <textarea id="message" name="Project Details" rows="4" placeholder="আপনার কেমন ডিজাইন বা কাজ দরকার তা বিস্তারিত জানান..."></textarea>
+                    <textarea id="message" name="Project_Details" rows="4" placeholder="আপনার কেমন কাজ দরকার তা বিস্তারিত জানান..."></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem;"><i class="fa-solid fa-paper-plane"></i> সরাসরি ইমেইলে অর্ডার সাবমিট করুন</button>
+                <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem;">
+                    <i class="fa-solid fa-paper-plane"></i> সরাসরি ইমেইলে মেসেজ সাবমিট করুন
+                </button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 NBIT Freelance Agency. সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>&copy; 2026 NBIT Agency | Led by Md Jehadul Islam. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Auto select service when clicking order button from team section
         function selectExpert(serviceName) {
             document.getElementById('service').value = serviceName;
         }
     </script>
 </body>
 </html>
-<form action="https://api.web3forms.com/submit" method="POST" class="order-form">
-    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-    <!-- বাকি সব ইনপুট আগের মতোই থাকবে -->
-</form>
