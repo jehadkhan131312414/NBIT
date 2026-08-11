@@ -70,6 +70,16 @@
       });
   }
 
+  // ছবিকে Data URL (Base64)-এ কনভার্ট করার ফাংশন
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
   window.submitPost = async function() {
       const title = document.getElementById("postTitle").value;
       const fileInput = document.getElementById("postImageFile");
@@ -83,41 +93,24 @@
 
       const file = fileInput.files[0];
       statusMsg.style.color = "#0066ff";
-      statusMsg.innerText = "ছবি আপলোড হচ্ছে, অপেক্ষা করুন...";
-
-      // ImgBB API দিয়ে সরাসরি ছবি আপলোড
-      const formData = new FormData();
-      formData.append("image", file);
+      statusMsg.innerText = "প্রসেস হচ্ছে, অপেক্ষা করুন...";
 
       try {
-          // বিনামূল্যে ফ্রি ক্লাউড এপিআই কি
-          const apiKey = "c081297db3eaed75fbdd2c7009403a49"; 
-          const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
-              method: "POST",
-              body: formData
-          });
+          // সরাসরি ব্রাউজারেই ছবি প্রসেস
+          const imageUrl = await getBase64(file);
 
-          const result = await response.json();
+          statusMsg.style.color = "green";
+          statusMsg.innerText = "পোস্ট সফলভাবে সম্পন্ন হয়েছে!";
 
-          if(result.success) {
-              const imageUrl = result.data.url; // আপলোড করা ছবির সরাসরি লিংক
-              console.log("Uploaded Image URL:", imageUrl);
-
-              statusMsg.style.color = "green";
-              statusMsg.innerText = "পোস্ট সফলভাবে সম্পন্ন হয়েছে!";
-
-              // ইনপুট ক্লিয়ার করা
-              document.getElementById("postTitle").value = "";
-              fileInput.value = "";
-              document.getElementById("postDesc").value = "";
-          } else {
-              throw new Error("Upload failed");
-          }
+          // ইনপুট ক্লিয়ার করা
+          document.getElementById("postTitle").value = "";
+          fileInput.value = "";
+          document.getElementById("postDesc").value = "";
 
       } catch (error) {
           console.error(error);
           statusMsg.style.color = "red";
-          statusMsg.innerText = "ছবি আপলোড ব্যর্থ হয়েছে! পুনরায় চেষ্টা করুন।";
+          statusMsg.innerText = "ছবি প্রসেস করতে ব্যর্থ হয়েছে! পুনরায় চেষ্টা করুন।";
       }
   }
 </script>
