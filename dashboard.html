@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>টিম মেম্বার ড্যাশবোর্ড | NBIT Agency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; background: #f4f7fe; padding: 2rem; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f4f7fe; padding-bottom: 1rem; margin-bottom: 2rem; }
+        .btn-logout { background: #ff4d4d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
+        .post-form textarea, .post-form input { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #e0e5f2; border-radius: 8px; box-sizing: border-box; }
+        .btn-submit { background: #0066ff; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>টিম মেম্বার ড্যাশবোর্ড</h2>
+        <button class="btn-logout" onclick="logout()">লগআউট</button>
+    </div>
+
+    <div class="post-form">
+        <h3>ক্লায়েন্টদের জন্য নতুন আপডেট / প্রজেক্ট পোস্ট করুন</h3>
+        <input type="text" id="postTitle" placeholder="প্রজেক্ট বা সার্ভিস শিরোনাম...">
+        <textarea id="postDesc" rows="4" placeholder="প্রজেক্টের বিস্তারিত তথ্য ও কাজের বিবরণ লিখুন..."></textarea>
+        <button class="btn-submit" onclick="submitPost()">ওয়েবসাইটে পোস্ট করুন</button>
+    </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDW_LjAxDCr5YL5Algw5rlKX6CToxc6Kmw",
+    authDomain: "nbit-agency.firebaseapp.com",
+    projectId: "nbit-agency",
+    storageBucket: "nbit-agency.firebasestorage.app",
+    messagingSenderId: "306435778496",
+    appId: "1:306435778496:web:807a5c2ca0781170340a25"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // চেক করবে ইউজার লগইন আছে কি না
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+
+  window.logout = function() {
+      signOut(auth).then(() => {
+          window.location.href = "login.html";
+      });
+  }
+
+  window.submitPost = function() {
+      alert("পোস্টটি সফলভাবে সাবমিট হয়েছে!");
+      document.getElementById("postTitle").value = "";
+      document.getElementById("postDesc").value = "";
+  }
+</script>
+
+</body>
+</html>
