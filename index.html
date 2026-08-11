@@ -417,5 +417,53 @@
             document.getElementById('service').value = serviceName;
         }
     </script>
+    <!-- সাম্প্রতিক পোস্ট বা প্রজেক্ট সেকশন -->
+<section style="padding: 3rem 1rem; max-width: 1100px; margin: 0 auto;">
+    <h2 style="text-align: center; color: #2b3674; margin-bottom: 2rem; font-family: 'Hind Siliguri', sans-serif;">আমাদের সাম্প্রতিক প্রজেক্ট ও আপডেট</h2>
+    <div id="posts-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <p style="text-align: center; grid-column: 1/-1;">লোড হচ্ছে...</p>
+    </div>
+</section>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDW_LjAxDCr5YL5Algw5rlKX6CToxc6Kmw",
+    authDomain: "nbit-agency.firebaseapp.com",
+    projectId: "nbit-agency",
+    storageBucket: "nbit-agency.firebasestorage.app",
+    messagingSenderId: "306435778496",
+    appId: "1:306435778496:web:807a5c2ca0781170340a25"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const postsContainer = document.getElementById("posts-container");
+  const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+
+  onSnapshot(q, (snapshot) => {
+      postsContainer.innerHTML = "";
+      if(snapshot.empty) {
+          postsContainer.innerHTML = "<p style='text-align:center; grid-column: 1/-1;'>এখনো কোনো পোস্ট করা হয়নি।</p>";
+          return;
+      }
+      snapshot.forEach((doc) => {
+          const data = doc.data();
+          const postCard = `
+              <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; font-family: 'Hind Siliguri', sans-serif;">
+                  <img src="${data.image}" style="width: 100%; height: 200px; object-fit: cover;">
+                  <div style="padding: 1.2rem;">
+                      <h3 style="color: #2b3674; margin-bottom: 0.5rem; margin-top: 0;">${data.title}</h3>
+                      <p style="color: #555; font-size: 0.95rem; line-height: 1.5; white-space: pre-line; margin: 0;">${data.description}</p>
+                  </div>
+              </div>
+          `;
+          postsContainer.innerHTML += postCard;
+      });
+  });
+</script>
 </body>
 </html>
