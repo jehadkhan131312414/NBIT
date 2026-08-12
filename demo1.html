@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBIT - Project Demos Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* Top Header */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111827;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span { color: #00d2ff; }
+
+        .back-home {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-home:hover { color: #00d2ff; }
+
+        /* Welcome & Filter Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-section h1 span {
+            background: linear-gradient(135deg, #0066ff, #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-section p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Categories Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #0066ff;
+            color: #fff;
+            border-color: #0066ff;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Demo Grid */
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .demo-card {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 210, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+        }
+
+        .demo-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .demo-body {
+            padding: 20px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            color: #00d2ff;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .demo-body h3 {
+            font-size: 1.2rem;
+            margin: 8px 0;
+        }
+
+        .demo-body p {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            flex: 1;
+            text-align: center;
+            background: linear-gradient(135deg, #0066ff, #00d2ff);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .view-btn:hover { opacity: 0.9; }
+
+        /* Welcome Popup Modal */
+        #welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+        }
+
+        .modal-card {
+            background: #111827;
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            animation: popIn 0.4s ease;
+        }
+
+        .modal-card h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-card h2 span {
+            background: linear-gradient(135deg, #0066ff, #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #0066ff, #00d2ff);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pop-up Welcome Modal -->
+    <div id="welcome-modal">
+        <div class="modal-card">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🚀</div>
+            <h2>Welcome to <span>Project Demo Site</span></h2>
+            <p>Explore all live project demos created by NBIT experts.</p>
+            <button onclick="closeModal()" class="start-btn">Explore Projects</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">NB<span>IT</span> Demos</a>
+        <a href="index.html" class="back-home">← Back to Main Website</a>
+    </header>
+
+    <!-- Hero Title -->
+    <section class="hero-section">
+        <h1>Live <span>Project Demos</span></h1>
+        <p>Select a category or click on any demo below to view client live previews.</p>
+
+        <!-- Filter Categories -->
+        <div class="filter-buttons">
+            <button class="filter-btn active">All Demos</button>
+            <button class="filter-btn">Web Development</button>
+            <button class="filter-btn">Graphics Design</button>
+            <button class="filter-btn">Marketing</button>
+        </div>
+    </section>
+
+    <!-- Demos List -->
+    <div class="demo-container">
+
+        <!-- Project 1 -->
+        <div class="demo-card">
+            <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=800" class="demo-img" alt="Mountain Dew">
+            <div class="demo-body">
+                <span class="tag">Marketing & Design</span>
+                <h3>Mountain Dew Banner Concept</h3>
+                <p>Refreshing product manipulation and digital ad concept design.</p>
+                <div class="btn-group">
+                    <a href="https://your-external-demo-link.com" target="_blank" class="view-btn">Live Preview ↗</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 (ভবিষ্যতে আপনি নতুন ডেমো এখানে যোগ করবেন) -->
+        <div class="demo-card">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" class="demo-img" alt="E-Commerce">
+            <div class="demo-body">
+                <span class="tag">Web Development</span>
+                <h3>E-Commerce Web Portal</h3>
+                <p>Full-stack modern e-commerce application UI/UX and dashboard demo.</p>
+                <div class="btn-group">
+                    <a href="https://your-external-demo-link-2.com" target="_blank" class="view-btn">Live Preview ↗</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function closeModal() {
+            const modal = document.getElementById('welcome-modal');
+            modal.style.opacity = '0';
+            modal.style.transition = 'opacity 0.4s ease';
+            setTimeout(() => { modal.style.display = 'none'; }, 400);
+        }
+    </script>
+</body>
+</html>
