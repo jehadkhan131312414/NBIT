@@ -646,5 +646,107 @@
 }
 </style>
 <!-- NBIT Team Section End -->
+    <!-- NBIT Welcome Intro Animation Start -->
+<div id="nbit-welcome-screen">
+    <div class="welcome-content">
+        <h1 class="welcome-title">Welcome To <span>NBIT</span></h1>
+        <p class="welcome-subtext">Empowering Your Digital Future</p>
+        <div class="welcome-loader"></div>
+    </div>
+</div>
+
+<style>
+/* Welcome Animation CSS */
+#nbit-welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0b0f19;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.welcome-content {
+    text-align: center;
+    animation: zoomIn 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.welcome-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.welcome-title span {
+    background: linear-gradient(135deg, #0066ff, #00d2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.welcome-subtext {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.welcome-loader {
+    width: 60px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 auto;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-loader::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #0066ff, #00d2ff);
+    animation: loadingBar 2s infinite ease-in-out;
+}
+
+@keyframes zoomIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes loadingBar {
+    0% { left: -100%; }
+    50% { left: 0%; }
+    100% { left: 100%; }
+}
+
+/* Hide Screen Animation */
+.fade-out {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+</style>
+
+<script>
+// 2.5 seconds পর স্ক্রিনটি গায়েব হয়ে যাবে
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const welcomeScreen = document.getElementById('nbit-welcome-screen');
+        if (welcomeScreen) {
+            welcomeScreen.classList.add('fade-out');
+        }
+    }, 2500); // ২.৫ সেকেন্ড সময় দেওয়া আছে
+});
+</script>
+<!-- NBIT Welcome Intro Animation End -->
 </body>
 </html>
