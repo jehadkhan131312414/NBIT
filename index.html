@@ -472,17 +472,20 @@
       }
       snapshot.forEach((doc) => {
           const data = doc.data();
-          const postCard = `<a href="demos.html" target="_blank" class="btn btn-primary" style="margin-top: 15px; display: inline-block; width: 100%; text-align: center;">
-    View Live Demo 🚀
-</a>
-              <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; font-family: 'Hind Siliguri', sans-serif;">
-                  <img src="${data.image}" style="width: 100%; height: 200px; object-fit: cover;">
-                  <div style="padding: 1.2rem;">
-                      <h3 style="color: #2b3674; margin-bottom: 0.5rem; margin-top: 0;">${data.title}</h3>
-                      <p style="color: #555; font-size: 0.95rem; line-height: 1.5; white-space: pre-line; margin: 0;">${data.description}</p>
-                  </div>
-              </div>
-          `;
+       const postCard = `
+            <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; font-family: 'Hind Siliguri', sans-serif;">
+                <img src="${data.image}" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 1.2rem;">
+                    <h3 style="color: #2b3674; margin-bottom: 0.5rem; margin-top: 0;">${data.title}</h3>
+                    <p style="color: #555; font-size: 0.95rem; line-height: 1.5; white-space: pre-line; margin: 0;">${data.description}</p>
+                    
+                    <!-- View Live Demo Button -->
+                    <a href="demos.html" target="_blank" class="btn btn-primary" style="margin-top: 15px; display: inline-block; width: 100%; text-align: center; text-decoration: none;">
+                        View Live Demo 🚀
+                    </a>
+                </div>
+            </div>
+        `;
           postsContainer.innerHTML += postCard;
       });
   });
