@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #0b0f19; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
         
-        /* Password Screen */
+        /* Login Box */
         .login-card { background: #111827; border: 1px solid rgba(0, 102, 255, 0.3); padding: 30px; border-radius: 16px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .login-card h2 { margin-bottom: 20px; font-size: 1.4rem; color: #00d2ff; }
         .login-card input { width: 100%; padding: 12px; margin-bottom: 15px; background: #1f2937; border: 1px solid #374151; color: #fff; border-radius: 8px; font-size: 1rem; outline: none; }
@@ -20,30 +20,31 @@
         .dashboard { display: none; width: 100%; max-width: 900px; }
         .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
         .dashboard-header h1 { font-size: 1.8rem; }
-        .logout-btn { background: #ef4444; border: none; padding: 8px 16px; color: #fff; border-radius: 6px; cursor: pointer; }
+        .logout-btn { background: #ef4444; border: none; padding: 8px 16px; color: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; }
 
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .member-card { background: #111827; border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 16px; text-align: center; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .member-card { background: #111827; border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 16px; text-align: center; display: none; }
         .member-card h3 { font-size: 1.2rem; margin-bottom: 5px; color: #38bdf8; }
-        .member-card .role { font-size: 0.8rem; color: #94a3b8; margin-bottom: 15px; }
+        .member-card .role { font-size: 0.85rem; color: #94a3b8; margin-bottom: 15px; }
         .member-card .income-amount { font-size: 2rem; font-weight: 700; color: #22c55e; margin-bottom: 15px; }
 
-        .income-input { width: 100%; padding: 8px; background: #1f2937; border: 1px solid #374151; color: #fff; border-radius: 6px; text-align: center; margin-bottom: 10px; }
-        .update-btn { width: 100%; padding: 8px; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .admin-controls { display: none; }
+        .income-input { width: 100%; padding: 10px; background: #1f2937; border: 1px solid #374151; color: #fff; border-radius: 6px; text-align: center; margin-bottom: 10px; font-size: 0.95rem; }
+        .update-btn { width: 100%; padding: 10px; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; }
         .update-btn:hover { background: #1d4ed8; }
     </style>
 </head>
 <body>
 
-    <!-- 1. Password Protection Modal -->
+    <!-- Login Screen -->
     <div class="login-card" id="login-box">
-        <h2>🔒 Admin Access</h2>
-        <input type="password" id="pass-input" placeholder="Sinthi132596957@SS">
-        <button onclick="checkPass()">Login</button>
+        <h2>🔒 Team Member Login</h2>
+        <input type="password" id="pass-input" placeholder="Your Password">
+        <button onclick="login()">Login</button>
         <p id="err-msg" style="color: #ef4444; margin-top: 10px; font-size: 0.85rem; display: none;">ভুল পাসওয়ার্ড!</p>
     </div>
 
-    <!-- 2. Income Dashboard -->
+    <!-- Income Dashboard -->
     <div class="dashboard" id="dashboard-box">
         <div class="dashboard-header">
             <h1>💰 Team Income Tracker</h1>
@@ -51,71 +52,97 @@
         </div>
 
         <div class="team-grid">
-            <!-- Member 1 -->
-            <div class="member-card">
+            <!-- Member 1: Captain -->
+            <div class="member-card" id="card-1">
                 <h3>Md Jehadul Islam</h3>
                 <p class="role">Team Captain</p>
-                <div class="income-amount" id="income-1">৳ 0</div>
-                <input type="number" id="input-1" class="income-input" placeholder="540203 BDT">
-                <button class="update-btn" onclick="updateIncome(1)">Update Income</button>
+                <div class="income-amount" id="income-1">৳ 543100.2</div>
+                <div class="admin-controls">
+                    <input type="number" id="input-1" class="income-input" placeholder="টাকার পরিমাণ লিখুন">
+                    <button class="update-btn" onclick="updateIncome(1)">Update Income</button>
+                </div>
             </div>
 
             <!-- Member 2 -->
-            <div class="member-card">
+            <div class="member-card" id="card-2">
                 <h3>Leona fil faixa</h3>
                 <p class="role">Web Developer</p>
-                <div class="income-amount" id="income-2">৳ 0</div>
-                <input type="number" id="input-2" class="income-input" placeholder="1030229 BDT">
-                <button class="update-btn" onclick="updateIncome(2)">Update Income</button>
+                <div class="income-amount" id="income-2">৳ 1083710.12</div>
+                <div class="admin-controls">
+                    <input type="number" id="input-2" class="income-input" placeholder="টাকার পরিমাণ লিখুন">
+                    <button class="update-btn" onclick="updateIncome(2)">Update Income</button>
+                </div>
             </div>
 
             <!-- Member 3 -->
-            <div class="member-card">
+            <div class="member-card" id="card-3">
                 <h3>Nusrat jahan Nabila</h3>
                 <p class="role">UI/UX Designer</p>
-                <div class="income-amount" id="income-3">৳ 0</div>
-                <input type="number" id="input-3" class="income-input" placeholder="1451642 BDT">
-                <button class="update-btn" onclick="updateIncome(3)">Update Income</button>
+                <div class="income-amount" id="income-3">৳ 1482482.30</div>
+                <div class="admin-controls">
+                    <input type="number" id="input-3" class="income-input" placeholder="টাকার পরিমাণ লিখুন">
+                    <button class="update-btn" onclick="updateIncome(3)">Update Income</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // আপনার পছন্দমতো পাসওয়ার্ড এখানে সেট করুন
-        const ADMIN_PASS = "nbit1234"; 
+        // বিভিন্ন মেম্বারের পাসওয়ার্ড সেটআপ
+        const PASSWORDS = {
+            "captain123": { role: "captain" },
+            "leona123": { role: "member", id: 2 },
+            "nabila123": { role: "member", id: 3 }
+        };
 
-        // ১. পাসওয়ার্ড চেকিং
-        function checkPass() {
-            const pass = document.getElementById('pass-input').value;
-            if(pass === ADMIN_PASS) {
+        // প্রাথমিক ডাটা (যদি আগে থেকে সেভ করা না থাকে)
+        if (!localStorage.getItem('member_income_1')) localStorage.setItem('member_income_1', '540203');
+        if (!localStorage.getItem('member_income_2')) localStorage.setItem('member_income_2', '1030229');
+        if (!localStorage.getItem('member_income_3')) localStorage.setItem('member_income_3', '1451662');
+
+        function login() {
+            const inputPass = document.getElementById('pass-input').value.trim();
+            const user = PASSWORDS[inputPass];
+
+            if (user) {
                 document.getElementById('login-box').style.display = 'none';
                 document.getElementById('dashboard-box').style.display = 'block';
-                loadIncomes();
+                document.getElementById('err-msg').style.display = 'none';
+
+                loadDashboard(user);
             } else {
                 document.getElementById('err-msg').style.display = 'block';
             }
         }
 
-        // ২. লোকাল স্টোরেজ থেকে ইনকাম লোড করা
-        function loadIncomes() {
-            for(let i = 1; i <= 3; i++) {
+        function loadDashboard(user) {
+            // সবার বর্তমান ইনকাম লোড করা
+            for (let i = 1; i <= 3; i++) {
                 let savedIncome = localStorage.getItem('member_income_' + i) || '0';
                 document.getElementById('income-' + i).innerText = '৳ ' + Number(savedIncome).toLocaleString();
             }
-        }
 
-        // ৩. ইনকাম আপডেট করা
-        function updateIncome(memberId) {
-            let newAmount = document.getElementById('input-' + memberId).value;
-            if(newAmount !== '') {
-                localStorage.setItem('member_income_' + memberId, newAmount);
-                document.getElementById('income-' + memberId).innerText = '৳ ' + Number(newAmount).toLocaleString();
-                document.getElementById('input-' + memberId).value = '';
-                alert('ইনকাম সফলভাবে আপডেট হয়েছে!');
+            if (user.role === 'captain') {
+                // ক্যাপ্টেন সব কার্ড দেখতে পাবে এবং এডিট কন্ট্রোল পাবে
+                document.querySelectorAll('.member-card').forEach(card => card.style.display = 'block');
+                document.querySelectorAll('.admin-controls').forEach(ctrl => ctrl.style.display = 'block');
+            } else {
+                // সাধারণ মেম্বার শুধু তার নিজের কার্ড দেখতে পাবে এবং এডিট করতে পারবে না
+                document.getElementById('card-' + user.id).style.display = 'block';
+                document.querySelectorAll('.admin-controls').forEach(ctrl => ctrl.style.display = 'none');
             }
         }
 
-        // ৪. লগআউট
+        function updateIncome(memberId) {
+            let newAmount = document.getElementById('input-' + memberId).value;
+            if (newAmount !== '') {
+                localStorage.setItem('member_income_' + memberId, newAmount);
+                document.getElementById('income-' + memberId).innerText = '৳ ' + Number(newAmount).toLocaleString();
+                document.getElementById('input-' + memberId).value = '';
+                alert('ইনকাম সফলভাবে আপডেট করা হয়েছে!');
+            }
+        }
+
         function logout() {
             location.reload();
         }
