@@ -9,82 +9,85 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         
-        body {
+        html, body {
+            width: 100%;
+            min-height: 100vh;
             background: #030712;
             color: #f3f4f6;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Animated Glowing Orbs */
-        .glow- orb {
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Animated Glowing Background Orbs */
+        .glow-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(140px);
+            filter: blur(120px);
             z-index: 0;
             pointer-events: none;
-            animation: pulseGlow 10s infinite alternate ease-in-out;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
         }
-        .glow-1 { width: 450px; height: 450px; background: rgba(59, 130, 246, 0.25); top: -100px; left: -100px; }
-        .glow-2 { width: 400px; height: 400px; background: rgba(168, 85, 247, 0.2); bottom: -100px; right: -100px; }
+        .glow-1 { width: 300px; height: 300px; background: rgba(59, 130, 246, 0.2); top: -50px; left: -50px; }
+        .glow-2 { width: 300px; height: 300px; background: rgba(168, 85, 247, 0.18); bottom: -50px; right: -50px; }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.15) translate(30px, -20px); }
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
         }
 
         .glass-card {
-            background: rgba(17, 24, 39, 0.7);
+            background: rgba(17, 24, 39, 0.85);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
             z-index: 10;
             position: relative;
+            margin: auto;
         }
 
-        /* Running Character Login Animation */
+        /* Login Screen Animation */
         .login-box {
-            padding: 40px;
+            padding: 40px 30px;
             width: 100%;
-            max-width: 420px;
+            max-width: 400px;
             text-align: center;
             animation: slideUp 0.6s ease-out;
         }
 
         .runner-track {
             width: 100%;
-            height: 60px;
+            height: 50px;
             position: relative;
             margin-bottom: 10px;
             overflow: hidden;
-            border-bottom: 2px stroke rgba(255, 255, 255, 0.1);
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
         }
 
         .runner-icon {
             position: absolute;
-            left: -50px;
-            top: 15px;
-            font-size: 2rem;
+            left: -40px;
+            top: 10px;
+            font-size: 1.8rem;
             color: #38bdf8;
-            animation: runIn 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            filter: drop-shadow(0 0 10px #38bdf8);
+            animation: runIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            filter: drop-shadow(0 0 8px #38bdf8);
         }
 
         @keyframes runIn {
-            0% { left: -50px; transform: scaleX(1); }
-            70% { left: 45%; transform: scaleX(1); }
-            85% { left: 42%; transform: scaleX(1); }
-            100% { left: 43%; transform: scaleX(1); }
+            0% { left: -40px; }
+            100% { left: 45%; }
         }
 
         .login-box h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
             margin-bottom: 8px;
             background: linear-gradient(135deg, #60a5fa, #c084fc);
@@ -92,84 +95,70 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .login-box p { color: #9ca3af; font-size: 0.9rem; margin-bottom: 25px; }
-
-        .input-box {
-            position: relative;
-            margin-bottom: 20px;
-        }
+        .login-box p { color: #9ca3af; font-size: 0.85rem; margin-bottom: 25px; }
 
         .input-box input {
             width: 100%;
-            padding: 14px 20px;
-            background: rgba(31, 41, 55, 0.5);
+            padding: 12px 18px;
+            background: rgba(31, 41, 55, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 14px;
+            border-radius: 12px;
             color: #fff;
             font-size: 1rem;
             outline: none;
             transition: 0.3s;
             text-align: center;
-            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
 
         .input-box input:focus {
             border-color: #60a5fa;
-            box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+            box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
         }
 
         .btn-portal {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             background: linear-gradient(135deg, #2563eb, #7c3aed);
             border: none;
             color: #fff;
             font-weight: 700;
-            border-radius: 14px;
+            border-radius: 12px;
             cursor: pointer;
             transition: 0.3s;
-            font-size: 1rem;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+            font-size: 0.95rem;
         }
 
-        .btn-portal:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
-        }
+        .btn-portal:hover { transform: translateY(-2px); }
 
-        /* Dashboard View */
+        /* Main Banking Dashboard */
         .dashboard {
             display: none;
             width: 100%;
-            max-width: 1100px;
-            padding: 35px;
-            animation: fadeIn 0.6s ease-out;
+            max-width: 1000px;
+            padding: 30px;
+            animation: fadeIn 0.5s ease-out;
         }
 
         .dash-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .brand-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-title i { font-size: 1.8rem; color: #38bdf8; }
-        .brand-title h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; }
+        .brand-title { display: flex; align-items: center; gap: 10px; }
+        .brand-title i { font-size: 1.5rem; color: #38bdf8; }
+        .brand-title h1 { font-size: 1.4rem; font-weight: 800; }
 
         .btn-logout {
             background: rgba(239, 68, 68, 0.15);
             border: 1px solid rgba(239, 68, 68, 0.3);
             color: #f87171;
-            padding: 10px 22px;
-            border-radius: 12px;
+            padding: 8px 18px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
@@ -177,138 +166,116 @@
 
         .btn-logout:hover { background: #ef4444; color: #fff; }
 
-        /* Total Vault Banner */
+        /* Vault Banner */
         .vault-banner {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(124, 58, 237, 0.2));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px 30px;
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(124, 58, 237, 0.15));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
-        .vault-info h4 { color: #9ca3af; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-        .vault-info h2 { font-size: 2.4rem; font-weight: 800; color: #4ade80; margin-top: 5px; }
+        .vault-info h4 { color: #9ca3af; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .vault-info h2 { font-size: 2.2rem; font-weight: 800; color: #4ade80; margin-top: 4px; }
 
         /* Team Cards Grid */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
         }
 
         .member-card {
-            background: rgba(31, 41, 55, 0.35);
+            background: rgba(31, 41, 55, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 25px;
-            position: relative;
+            border-radius: 18px;
+            padding: 20px;
             transition: 0.3s;
         }
 
-        .member-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(56, 189, 248, 0.3);
-        }
+        .member-card:hover { transform: translateY(-3px); border-color: rgba(56, 189, 248, 0.3); }
 
-        .card-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+        .card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 
         .badge {
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
         }
 
-        .badge-captain { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
-        .badge-member { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+        .badge-captain { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .badge-member { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
 
-        .member-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
-        .member-role { font-size: 0.85rem; color: #9ca3af; }
+        .member-card h3 { font-size: 1.1rem; font-weight: 700; }
+        .member-role { font-size: 0.8rem; color: #9ca3af; margin-bottom: 10px; }
 
-        .income-val {
-            font-size: 1.9rem;
-            font-weight: 800;
-            color: #38bdf8;
-            margin: 15px 0;
-        }
+        .income-val { font-size: 1.7rem; font-weight: 800; color: #38bdf8; }
 
-        .admin-controls { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(255, 255, 255, 0.1); }
+        .admin-controls { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(255, 255, 255, 0.1); }
         .income-input {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             background: rgba(17, 24, 39, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
+            border-radius: 8px;
             color: #fff;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .btn-update {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             background: #2563eb;
             color: #fff;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 700;
-            transition: 0.2s;
         }
-        .btn-update:hover { background: #1d4ed8; }
 
         /* Recent Transactions History */
         .history-section {
-            background: rgba(31, 41, 55, 0.25);
+            background: rgba(31, 41, 55, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 18px;
+            padding: 20px;
         }
 
         .history-section h3 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            color: #9ca3af;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #9ca3af;
+            gap: 8px;
         }
 
-        .history-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .history-list { display: flex; flex-direction: column; gap: 10px; }
 
         .history-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 18px;
+            padding: 10px 15px;
             background: rgba(17, 24, 39, 0.6);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
 
-        .tx-user { display: flex; align-items: center; gap: 12px; }
-        .tx-icon { width: 36px; height: 36px; background: rgba(34, 197, 94, 0.15); border-radius: 10px; color: #22c55e; display: flex; align-items: center; justify-content: center; }
-        .tx-info h5 { font-size: 0.95rem; font-weight: 600; }
-        .tx-info p { font-size: 0.75rem; color: #6b7280; }
-        .tx-amount { font-size: 1rem; font-weight: 700; color: #4ade80; }
+        .tx-user { display: flex; align-items: center; gap: 10px; }
+        .tx-icon { width: 32px; height: 32px; background: rgba(34, 197, 94, 0.15); border-radius: 8px; color: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+        .tx-info h5 { font-size: 0.9rem; font-weight: 600; }
+        .tx-info p { font-size: 0.7rem; color: #6b7280; }
+        .tx-amount { font-size: 0.95rem; font-weight: 700; color: #4ade80; }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
@@ -317,44 +284,41 @@
     <div class="glow-orb glow-1"></div>
     <div class="glow-orb glow-2"></div>
 
-    <!-- Animated Login Box -->
+    <!-- Login Box -->
     <div class="glass-card login-box" id="login-box">
         <div class="runner-track">
             <i class="fa-solid fa-person-running runner-icon"></i>
         </div>
         <h2>NBIT Income Vault</h2>
-        <p>পাসওয়ার্ড প্রবেশ করিয়ে ড্যাশবোর্ড আনলক করুন</p>
+        <p>পাসওয়ার্ড প্রবেশ করিয়ে আনলক করুন</p>
         <div class="input-box">
             <input type="password" id="pass-input" placeholder="••••••••">
         </div>
         <button class="btn-portal" onclick="login()">Enter Dashboard <i class="fa-solid fa-arrow-right-to-bracket" style="margin-left: 6px;"></i></button>
-        <p id="err-msg" style="color: #f87171; margin-top: 15px; font-size: 0.85rem; display: none;"><i class="fa-solid fa-circle-exclamation"></i> পাসওয়ার্ড ভুল হয়েছে!</p>
+        <p id="err-msg" style="color: #f87171; margin-top: 12px; font-size: 0.8rem; display: none;"><i class="fa-solid fa-circle-exclamation"></i> পাসওয়ার্ড ভুল হয়েছে!</p>
     </div>
 
-    <!-- Main Banking-style Dashboard -->
+    <!-- Dashboard -->
     <div class="glass-card dashboard" id="dashboard-box">
         <div class="dash-nav">
             <div class="brand-title">
                 <i class="fa-solid fa-wallet"></i>
-                <h1>NBIT Financial Portal</h1>
+                <h1>NBIT Portal</h1>
             </div>
             <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-power-off"></i> Exit</button>
         </div>
 
-        <!-- Total Earnings Banner -->
         <div class="vault-banner">
             <div class="vault-info">
-                <h4><i class="fa-solid fa-chart-line"></i> Combined Team Earnings</h4>
+                <h4>Combined Team Earnings</h4>
                 <h2 id="total-vault">৳ 0</h2>
             </div>
-            <div style="color: #38bdf8; font-size: 2.2rem;">
+            <div style="color: #38bdf8; font-size: 2rem;">
                 <i class="fa-solid fa-building-columns"></i>
             </div>
         </div>
 
-        <!-- Team Member Cards -->
         <div class="team-grid">
-            <!-- Member 1: Captain -->
             <div class="member-card">
                 <div class="card-head">
                     <span class="badge badge-captain">Team Captain</span>
@@ -362,14 +326,13 @@
                 </div>
                 <h3>Md Jehadul Islam</h3>
                 <p class="member-role">Team Director</p>
-                <div class="income-val" id="income-1">৳ 542746</div>
+                <div class="income-val" id="income-1">৳ 549057</div>
                 <div class="admin-controls">
                     <input type="number" id="input-1" class="income-input" placeholder="নতুন টাকা লিখুন">
                     <button class="btn-update" onclick="updateIncome(1, 'Md Jehadul Islam')">Update Balance</button>
                 </div>
             </div>
 
-            <!-- Member 2 -->
             <div class="member-card">
                 <div class="card-head">
                     <span class="badge badge-member">Web Developer</span>
@@ -377,14 +340,13 @@
                 </div>
                 <h3>Leona fil faixa</h3>
                 <p class="member-role">Frontend Specialist</p>
-                <div class="income-val" id="income-2">৳ 1087762</div>
+                <div class="income-val" id="income-2">৳ 1087563</div>
                 <div class="admin-controls">
                     <input type="number" id="input-2" class="income-input" placeholder="নতুন টাকা লিখুন">
                     <button class="btn-update" onclick="updateIncome(2, 'Leona fil faixa')">Update Balance</button>
                 </div>
             </div>
 
-            <!-- Member 3 -->
             <div class="member-card">
                 <div class="card-head">
                     <span class="badge badge-member">UI/UX Designer</span>
@@ -392,7 +354,7 @@
                 </div>
                 <h3>Nusrat jahan Nabila</h3>
                 <p class="member-role">Creative Lead</p>
-                <div class="income-val" id="income-3">৳ 1492048</div>
+                <div class="income-val" id="income-3">৳ 1347654</div>
                 <div class="admin-controls">
                     <input type="number" id="input-3" class="income-input" placeholder="নতুন টাকা লিখুন">
                     <button class="btn-update" onclick="updateIncome(3, 'Nusrat jahan Nabila')">Update Balance</button>
@@ -400,12 +362,9 @@
             </div>
         </div>
 
-        <!-- Recent Transaction History Section -->
         <div class="history-section">
-            <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Transaction Log</h3>
-            <div class="history-list" id="history-container">
-                <!-- Transactions will load dynamically -->
-            </div>
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Transaction History</h3>
+            <div class="history-list" id="history-container"></div>
         </div>
     </div>
 
@@ -420,7 +379,6 @@
         if (!localStorage.getItem('member_income_2')) localStorage.setItem('member_income_2', '1030229');
         if (!localStorage.getItem('member_income_3')) localStorage.setItem('member_income_3', '1451662');
 
-        // Initial Sample History
         if (!localStorage.getItem('tx_history')) {
             const initialTx = [
                 { name: "Nusrat jahan Nabila", amount: "1,451,662", date: "Today, 08:30 PM" },
@@ -451,13 +409,11 @@
 
         function loadDashboardData() {
             let total = 0;
-
             for (let i = 1; i <= 3; i++) {
                 let saved = Number(localStorage.getItem('member_income_' + i) || '0');
                 total += saved;
                 document.getElementById('income-' + i).innerText = '৳ ' + saved.toLocaleString();
             }
-
             document.getElementById('total-vault').innerText = '৳ ' + total.toLocaleString();
             renderHistory();
         }
@@ -468,7 +424,6 @@
                 localStorage.setItem('member_income_' + id, val);
                 document.getElementById('input-' + id).value = '';
 
-                // Log Transaction History
                 let history = JSON.parse(localStorage.getItem('tx_history') || '[]');
                 let now = new Date();
                 let dateStr = now.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) + ', ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -477,9 +432,8 @@
                 if (history.length > 5) history.pop();
 
                 localStorage.setItem('tx_history', JSON.stringify(history));
-
                 loadDashboardData();
-                alert('ইনকাম ও ট্রানজ্যাকশন হিস্ট্রি আপডেট করা হয়েছে!');
+                alert('ইনকাম ও ট্রানজ্যাকশন আপডেট করা হয়েছে!');
             }
         }
 
