@@ -3,84 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Income Dashboard - NBIT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>NBIT - Team Income Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #0b0f19; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         
-        /* Login Box */
-        .login-card { background: #111827; border: 1px solid rgba(0, 102, 255, 0.3); padding: 30px; border-radius: 16px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .login-card h2 { margin-bottom: 20px; font-size: 1.4rem; color: #00d2ff; }
-        .login-card input { width: 100%; padding: 12px; margin-bottom: 15px; background: #1f2937; border: 1px solid #374151; color: #fff; border-radius: 8px; font-size: 1rem; outline: none; }
-        .login-card button { width: 100%; padding: 12px; background: linear-gradient(135deg, #0066ff, #00d2ff); border: none; color: #fff; font-weight: 600; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-        .login-card button:hover { opacity: 0.9; }
+        body {
+            background: #060913;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-        /* Dashboard */
-        .dashboard { display: none; width: 100%; max-width: 900px; }
-        .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .dashboard-header h1 { font-size: 1.8rem; }
-        .logout-btn { background: #ef4444; border: none; padding: 8px 16px; color: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        /* Animated Glowing Background Orbs */
+        .bg-glow-1, .bg-glow-2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            animation: floatGlow 8s infinite alternate ease-in-out;
+        }
+        .bg-glow-1 { width: 350px; height: 350px; background: rgba(0, 102, 255, 0.35); top: -50px; left: -50px; }
+        .bg-glow-2 { width: 400px; height: 400px; background: rgba(168, 85, 247, 0.25); bottom: -100px; right: -50px; }
 
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .member-card { background: #111827; border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 16px; text-align: center; display: none; }
-        .member-card h3 { font-size: 1.2rem; margin-bottom: 5px; color: #38bdf8; }
-        .member-card .role { font-size: 0.85rem; color: #94a3b8; margin-bottom: 15px; }
-        .member-card .income-amount { font-size: 2rem; font-weight: 700; color: #22c55e; margin-bottom: 15px; }
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 30px) scale(1.1); }
+        }
+
+        /* Glassmorphism Container Card */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Login Screen */
+        .login-box {
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+        .login-box h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(135deg, #38bdf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .login-box p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 25px; }
+
+        .input-group { position: relative; margin-bottom: 20px; }
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(31, 41, 55, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+            text-align: center;
+        }
+        .input-group input:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #2563eb, #a855f7);
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5); }
+
+        /* Dashboard Screen */
+        .dashboard { display: none; width: 100%; max-width: 1000px; padding: 35px; animation: fadeIn 0.6s ease-out; }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 20px; }
+        .dash-header h1 { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #38bdf8, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .logout-btn {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #f87171;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .logout-btn:hover { background: #ef4444; color: #fff; }
+
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+        .member-card {
+            background: rgba(31, 41, 55, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+        }
+        .member-card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.3); }
+
+        .role-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
+        .badge-captain { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
+        .badge-member { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+
+        .member-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 5px; }
+        .income-title { font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; margin-top: 15px; }
+        .income-amount { font-size: 2rem; font-weight: 800; color: #4ade80; margin: 5px 0 20px 0; text-shadow: 0 0 10px rgba(74, 222, 128, 0.2); }
 
         .admin-controls { display: none; }
-        .income-input { width: 100%; padding: 10px; background: #1f2937; border: 1px solid #374151; color: #fff; border-radius: 6px; text-align: center; margin-bottom: 10px; font-size: 0.95rem; }
-        .update-btn { width: 100%; padding: 10px; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .income-input { width: 100%; padding: 10px; background: rgba(17, 24, 39, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; color: #fff; text-align: center; margin-bottom: 10px; font-size: 0.95rem; }
+        .update-btn { width: 100%; padding: 10px; background: #2563eb; color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 700; transition: 0.2s; }
         .update-btn:hover { background: #1d4ed8; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- Login Screen -->
-    <div class="login-card" id="login-box">
-        <h2>🔒 Team Member Login</h2>
-        <input type="password" id="pass-input" placeholder="Your Password">
-        <button onclick="login()">Login</button>
-        <p id="err-msg" style="color: #ef4444; margin-top: 10px; font-size: 0.85rem; display: none;">ভুল পাসওয়ার্ড!</p>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Login Box -->
+    <div class="glass-card login-box" id="login-box">
+        <h2>NBIT Income Portal</h2>
+        <p>পাসওয়ার্ড দিয়ে ড্যাশবোর্ডে প্রবেশ করুন</p>
+        <div class="input-group">
+            <input type="password" id="pass-input" placeholder="Enter Access Code">
+        </div>
+        <button class="btn-login" onclick="login()">Access Dashboard 🚀</button>
+        <p id="err-msg" style="color: #f87171; margin-top: 15px; font-size: 0.85rem; display: none;">পাসওয়ার্ড ভুল হয়েছে!</p>
     </div>
 
-    <!-- Income Dashboard -->
-    <div class="dashboard" id="dashboard-box">
-        <div class="dashboard-header">
-            <h1>💰 Team Income Tracker</h1>
-            <button class="logout-btn" onclick="logout()">Logout</button>
+    <!-- Dashboard Screen -->
+    <div class="glass-card dashboard" id="dashboard-box">
+        <div class="dash-header">
+            <h1>💎 Team Income Tracker</h1>
+            <button class="logout-btn" onclick="logout()">Exit</button>
         </div>
 
         <div class="team-grid">
             <!-- Member 1: Captain -->
-            <div class="member-card" id="card-1">
+            <div class="member-card">
+                <span class="role-badge badge-captain">Team Captain</span>
                 <h3>Md Jehadul Islam</h3>
-                <p class="role">Team Captain</p>
-                <div class="income-amount" id="income-1">৳ 543100.2</div>
+                <div class="income-title">Total Earnings</div>
+                <div class="income-amount" id="income-1">৳ 542380.43</div>
                 <div class="admin-controls">
-                    <input type="number" id="input-1" class="income-input" placeholder="টাকার পরিমাণ লিখুন">
+                    <input type="number" id="input-1" class="income-input" placeholder="নতুন টাকা বসান">
                     <button class="update-btn" onclick="updateIncome(1)">Update Income</button>
                 </div>
             </div>
 
             <!-- Member 2 -->
-            <div class="member-card" id="card-2">
+            <div class="member-card">
+                <span class="role-badge badge-member">Web Developer</span>
                 <h3>Leona fil faixa</h3>
-                <p class="role">Web Developer</p>
-                <div class="income-amount" id="income-2">৳ 1083710.12</div>
+                <div class="income-title">Total Earnings</div>
+                <div class="income-amount" id="income-2">৳ 1038902.32</div>
                 <div class="admin-controls">
-                    <input type="number" id="input-2" class="income-input" placeholder="টাকার পরিমাণ লিখুন">
+                    <input type="number" id="input-2" class="income-input" placeholder="নতুন টাকা বসান">
                     <button class="update-btn" onclick="updateIncome(2)">Update Income</button>
                 </div>
             </div>
 
             <!-- Member 3 -->
-            <div class="member-card" id="card-3">
+            <div class="member-card">
+                <span class="role-badge badge-member">UI/UX Designer</span>
                 <h3>Nusrat jahan Nabila</h3>
-                <p class="role">UI/UX Designer</p>
-                <div class="income-amount" id="income-3">৳ 1482482.30</div>
+                <div class="income-title">Total Earnings</div>
+                <div class="income-amount" id="income-3">৳ 1433899.35</div>
                 <div class="admin-controls">
-                    <input type="number" id="input-3" class="income-input" placeholder="টাকার পরিমাণ লিখুন">
+                    <input type="number" id="input-3" class="income-input" placeholder="নতুন টাকা বসান">
                     <button class="update-btn" onclick="updateIncome(3)">Update Income</button>
                 </div>
             </div>
@@ -88,58 +196,49 @@
     </div>
 
     <script>
-        // বিভিন্ন মেম্বারের পাসওয়ার্ড সেটআপ
         const PASSWORDS = {
-            "captain123": { role: "captain" },
-            "leona123": { role: "member", id: 2 },
-            "nabila123": { role: "member", id: 3 }
+            "captain123": "captain",
+            "leona123": "member",
+            "nabila123": "member"
         };
 
-        // প্রাথমিক ডাটা (যদি আগে থেকে সেভ করা না থাকে)
         if (!localStorage.getItem('member_income_1')) localStorage.setItem('member_income_1', '540203');
         if (!localStorage.getItem('member_income_2')) localStorage.setItem('member_income_2', '1030229');
         if (!localStorage.getItem('member_income_3')) localStorage.setItem('member_income_3', '1451662');
 
         function login() {
-            const inputPass = document.getElementById('pass-input').value.trim();
-            const user = PASSWORDS[inputPass];
+            const pass = document.getElementById('pass-input').value.trim();
+            const role = PASSWORDS[pass];
 
-            if (user) {
+            if (role) {
                 document.getElementById('login-box').style.display = 'none';
                 document.getElementById('dashboard-box').style.display = 'block';
-                document.getElementById('err-msg').style.display = 'none';
+                loadIncomes();
 
-                loadDashboard(user);
+                if (role === 'captain') {
+                    document.querySelectorAll('.admin-controls').forEach(el => el.style.display = 'block');
+                } else {
+                    document.querySelectorAll('.admin-controls').forEach(el => el.style.display = 'none');
+                }
             } else {
                 document.getElementById('err-msg').style.display = 'block';
             }
         }
 
-        function loadDashboard(user) {
-            // সবার বর্তমান ইনকাম লোড করা
+        function loadIncomes() {
             for (let i = 1; i <= 3; i++) {
-                let savedIncome = localStorage.getItem('member_income_' + i) || '0';
-                document.getElementById('income-' + i).innerText = '৳ ' + Number(savedIncome).toLocaleString();
-            }
-
-            if (user.role === 'captain') {
-                // ক্যাপ্টেন সব কার্ড দেখতে পাবে এবং এডিট কন্ট্রোল পাবে
-                document.querySelectorAll('.member-card').forEach(card => card.style.display = 'block');
-                document.querySelectorAll('.admin-controls').forEach(ctrl => ctrl.style.display = 'block');
-            } else {
-                // সাধারণ মেম্বার শুধু তার নিজের কার্ড দেখতে পাবে এবং এডিট করতে পারবে না
-                document.getElementById('card-' + user.id).style.display = 'block';
-                document.querySelectorAll('.admin-controls').forEach(ctrl => ctrl.style.display = 'none');
+                let saved = localStorage.getItem('member_income_' + i) || '0';
+                document.getElementById('income-' + i).innerText = '৳ ' + Number(saved).toLocaleString();
             }
         }
 
-        function updateIncome(memberId) {
-            let newAmount = document.getElementById('input-' + memberId).value;
-            if (newAmount !== '') {
-                localStorage.setItem('member_income_' + memberId, newAmount);
-                document.getElementById('income-' + memberId).innerText = '৳ ' + Number(newAmount).toLocaleString();
-                document.getElementById('input-' + memberId).value = '';
-                alert('ইনকাম সফলভাবে আপডেট করা হয়েছে!');
+        function updateIncome(id) {
+            let val = document.getElementById('input-' + id).value;
+            if (val !== '') {
+                localStorage.setItem('member_income_' + id, val);
+                document.getElementById('income-' + id).innerText = '৳ ' + Number(val).toLocaleString();
+                document.getElementById('input-' + id).value = '';
+                alert('ইনকাম আপডেট সম্পন্ন হয়েছে!');
             }
         }
 
@@ -147,6 +246,5 @@
             location.reload();
         }
     </script>
-
 </body>
 </html>
