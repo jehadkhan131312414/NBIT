@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBIT - Team Income Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>NBIT - Premium Financial Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         
         body {
-            background: #060913;
-            color: #fff;
+            background: #030712;
+            color: #f3f4f6;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -20,177 +21,390 @@
             position: relative;
         }
 
-        /* Animated Glowing Background Orbs */
-        .bg-glow-1, .bg-glow-2 {
+        /* Animated Glowing Orbs */
+        .glow- orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(140px);
             z-index: 0;
-            animation: floatGlow 8s infinite alternate ease-in-out;
+            pointer-events: none;
+            animation: pulseGlow 10s infinite alternate ease-in-out;
         }
-        .bg-glow-1 { width: 350px; height: 350px; background: rgba(0, 102, 255, 0.35); top: -50px; left: -50px; }
-        .bg-glow-2 { width: 400px; height: 400px; background: rgba(168, 85, 247, 0.25); bottom: -100px; right: -50px; }
+        .glow-1 { width: 450px; height: 450px; background: rgba(59, 130, 246, 0.25); top: -100px; left: -100px; }
+        .glow-2 { width: 400px; height: 400px; background: rgba(168, 85, 247, 0.2); bottom: -100px; right: -100px; }
 
-        @keyframes floatGlow {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(40px, 30px) scale(1.1); }
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(30px, -20px); }
         }
 
-        /* Glassmorphism Container Card */
         .glass-card {
-            background: rgba(17, 24, 39, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
             z-index: 10;
             position: relative;
         }
 
-        /* Login Screen */
+        /* Running Character Login Animation */
         .login-box {
             padding: 40px;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
-            animation: fadeIn 0.6s ease-out;
+            animation: slideUp 0.6s ease-out;
         }
-        .login-box h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(135deg, #38bdf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .login-box p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 25px; }
 
-        .input-group { position: relative; margin-bottom: 20px; }
-        .input-group input {
+        .runner-track {
             width: 100%;
-            padding: 14px;
-            background: rgba(31, 41, 55, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
+            height: 60px;
+            position: relative;
+            margin-bottom: 10px;
+            overflow: hidden;
+            border-bottom: 2px stroke rgba(255, 255, 255, 0.1);
+        }
+
+        .runner-icon {
+            position: absolute;
+            left: -50px;
+            top: 15px;
+            font-size: 2rem;
+            color: #38bdf8;
+            animation: runIn 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            filter: drop-shadow(0 0 10px #38bdf8);
+        }
+
+        @keyframes runIn {
+            0% { left: -50px; transform: scaleX(1); }
+            70% { left: 45%; transform: scaleX(1); }
+            85% { left: 42%; transform: scaleX(1); }
+            100% { left: 43%; transform: scaleX(1); }
+        }
+
+        .login-box h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-box p { color: #9ca3af; font-size: 0.9rem; margin-bottom: 25px; }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
             color: #fff;
             font-size: 1rem;
             outline: none;
             transition: 0.3s;
             text-align: center;
+            letter-spacing: 2px;
         }
-        .input-group input:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
 
-        .btn-login {
+        .input-box input:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+        }
+
+        .btn-portal {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #2563eb, #a855f7);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
             border: none;
             color: #fff;
             font-weight: 700;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            font-size: 1rem;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
         }
-        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5); }
 
-        /* Dashboard Screen */
-        .dashboard { display: none; width: 100%; max-width: 1000px; padding: 35px; animation: fadeIn 0.6s ease-out; }
-        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 20px; }
-        .dash-header h1 { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #38bdf8, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .logout-btn {
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid rgba(239, 68, 68, 0.4);
+        .btn-portal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
+        }
+
+        /* Dashboard View */
+        .dashboard {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            padding: 35px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .dash-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .brand-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-title i { font-size: 1.8rem; color: #38bdf8; }
+        .brand-title h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; }
+
+        .btn-logout {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
             color: #f87171;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
         }
-        .logout-btn:hover { background: #ef4444; color: #fff; }
 
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .btn-logout:hover { background: #ef4444; color: #fff; }
+
+        /* Total Vault Banner */
+        .vault-banner {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(124, 58, 237, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .vault-info h4 { color: #9ca3af; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .vault-info h2 { font-size: 2.4rem; font-weight: 800; color: #4ade80; margin-top: 5px; }
+
+        /* Team Cards Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
 
         .member-card {
-            background: rgba(31, 41, 55, 0.4);
+            background: rgba(31, 41, 55, 0.35);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 25px;
-            text-align: center;
             position: relative;
             transition: 0.3s;
         }
-        .member-card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.3); }
 
-        .role-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
+        .member-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
         .badge-captain { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
         .badge-member { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
 
-        .member-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 5px; }
-        .income-title { font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; margin-top: 15px; }
-        .income-amount { font-size: 2rem; font-weight: 800; color: #4ade80; margin: 5px 0 20px 0; text-shadow: 0 0 10px rgba(74, 222, 128, 0.2); }
+        .member-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
+        .member-role { font-size: 0.85rem; color: #9ca3af; }
 
-        .admin-controls { display: none; }
-        .income-input { width: 100%; padding: 10px; background: rgba(17, 24, 39, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; color: #fff; text-align: center; margin-bottom: 10px; font-size: 0.95rem; }
-        .update-btn { width: 100%; padding: 10px; background: #2563eb; color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 700; transition: 0.2s; }
-        .update-btn:hover { background: #1d4ed8; }
+        .income-val {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #38bdf8;
+            margin: 15px 0;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .admin-controls { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(255, 255, 255, 0.1); }
+        .income-input {
+            width: 100%;
+            padding: 10px;
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .btn-update {
+            width: 100%;
+            padding: 10px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+        .btn-update:hover { background: #1d4ed8; }
+
+        /* Recent Transactions History */
+        .history-section {
+            background: rgba(31, 41, 55, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .history-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #9ca3af;
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            background: rgba(17, 24, 39, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tx-user { display: flex; align-items: center; gap: 12px; }
+        .tx-icon { width: 36px; height: 36px; background: rgba(34, 197, 94, 0.15); border-radius: 10px; color: #22c55e; display: flex; align-items: center; justify-content: center; }
+        .tx-info h5 { font-size: 0.95rem; font-weight: 600; }
+        .tx-info p { font-size: 0.75rem; color: #6b7280; }
+        .tx-amount { font-size: 1rem; font-weight: 700; color: #4ade80; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow-1"></div>
-    <div class="bg-glow-2"></div>
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
 
-    <!-- Login Box -->
+    <!-- Animated Login Box -->
     <div class="glass-card login-box" id="login-box">
-        <h2>NBIT Income Portal</h2>
-        <p>পাসওয়ার্ড দিয়ে ড্যাশবোর্ডে প্রবেশ করুন</p>
-        <div class="input-group">
-            <input type="password" id="pass-input" placeholder="Enter Access Code">
+        <div class="runner-track">
+            <i class="fa-solid fa-person-running runner-icon"></i>
         </div>
-        <button class="btn-login" onclick="login()">Access Dashboard 🚀</button>
-        <p id="err-msg" style="color: #f87171; margin-top: 15px; font-size: 0.85rem; display: none;">পাসওয়ার্ড ভুল হয়েছে!</p>
+        <h2>NBIT Income Vault</h2>
+        <p>পাসওয়ার্ড প্রবেশ করিয়ে ড্যাশবোর্ড আনলক করুন</p>
+        <div class="input-box">
+            <input type="password" id="pass-input" placeholder="••••••••">
+        </div>
+        <button class="btn-portal" onclick="login()">Enter Dashboard <i class="fa-solid fa-arrow-right-to-bracket" style="margin-left: 6px;"></i></button>
+        <p id="err-msg" style="color: #f87171; margin-top: 15px; font-size: 0.85rem; display: none;"><i class="fa-solid fa-circle-exclamation"></i> পাসওয়ার্ড ভুল হয়েছে!</p>
     </div>
 
-    <!-- Dashboard Screen -->
+    <!-- Main Banking-style Dashboard -->
     <div class="glass-card dashboard" id="dashboard-box">
-        <div class="dash-header">
-            <h1>💎 Team Income Tracker</h1>
-            <button class="logout-btn" onclick="logout()">Exit</button>
+        <div class="dash-nav">
+            <div class="brand-title">
+                <i class="fa-solid fa-wallet"></i>
+                <h1>NBIT Financial Portal</h1>
+            </div>
+            <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-power-off"></i> Exit</button>
         </div>
 
+        <!-- Total Earnings Banner -->
+        <div class="vault-banner">
+            <div class="vault-info">
+                <h4><i class="fa-solid fa-chart-line"></i> Combined Team Earnings</h4>
+                <h2 id="total-vault">৳ 0</h2>
+            </div>
+            <div style="color: #38bdf8; font-size: 2.2rem;">
+                <i class="fa-solid fa-building-columns"></i>
+            </div>
+        </div>
+
+        <!-- Team Member Cards -->
         <div class="team-grid">
             <!-- Member 1: Captain -->
             <div class="member-card">
-                <span class="role-badge badge-captain">Team Captain</span>
+                <div class="card-head">
+                    <span class="badge badge-captain">Team Captain</span>
+                    <i class="fa-solid fa-shield-halved" style="color: #c084fc;"></i>
+                </div>
                 <h3>Md Jehadul Islam</h3>
-                <div class="income-title">Total Earnings</div>
-                <div class="income-amount" id="income-1">৳ 542380.43</div>
+                <p class="member-role">Team Director</p>
+                <div class="income-val" id="income-1">৳ 543208</div>
                 <div class="admin-controls">
-                    <input type="number" id="input-1" class="income-input" placeholder="নতুন টাকা বসান">
-                    <button class="update-btn" onclick="updateIncome(1)">Update Income</button>
+                    <input type="number" id="input-1" class="income-input" placeholder="নতুন টাকা লিখুন">
+                    <button class="btn-update" onclick="updateIncome(1, 'Md Jehadul Islam')">Update Balance</button>
                 </div>
             </div>
 
             <!-- Member 2 -->
             <div class="member-card">
-                <span class="role-badge badge-member">Web Developer</span>
+                <div class="card-head">
+                    <span class="badge badge-member">Web Developer</span>
+                    <i class="fa-solid fa-laptop-code" style="color: #38bdf8;"></i>
+                </div>
                 <h3>Leona fil faixa</h3>
-                <div class="income-title">Total Earnings</div>
-                <div class="income-amount" id="income-2">৳ 1038902.32</div>
+                <p class="member-role">Frontend Specialist</p>
+                <div class="income-val" id="income-2">৳ 1031331</div>
                 <div class="admin-controls">
-                    <input type="number" id="input-2" class="income-input" placeholder="নতুন টাকা বসান">
-                    <button class="update-btn" onclick="updateIncome(2)">Update Income</button>
+                    <input type="number" id="input-2" class="income-input" placeholder="নতুন টাকা লিখুন">
+                    <button class="btn-update" onclick="updateIncome(2, 'Leona fil faixa')">Update Balance</button>
                 </div>
             </div>
 
             <!-- Member 3 -->
             <div class="member-card">
-                <span class="role-badge badge-member">UI/UX Designer</span>
-                <h3>Nusrat jahan Nabila</h3>
-                <div class="income-title">Total Earnings</div>
-                <div class="income-amount" id="income-3">৳ 1433899.35</div>
-                <div class="admin-controls">
-                    <input type="number" id="input-3" class="income-input" placeholder="নতুন টাকা বসান">
-                    <button class="update-btn" onclick="updateIncome(3)">Update Income</button>
+                <div class="card-head">
+                    <span class="badge badge-member">UI/UX Designer</span>
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: #38bdf8;"></i>
                 </div>
+                <h3>Nusrat jahan Nabila</h3>
+                <p class="member-role">Creative Lead</p>
+                <div class="income-val" id="income-3">৳ 1493032</div>
+                <div class="admin-controls">
+                    <input type="number" id="input-3" class="income-input" placeholder="নতুন টাকা লিখুন">
+                    <button class="btn-update" onclick="updateIncome(3, 'Nusrat jahan Nabila')">Update Balance</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Transaction History Section -->
+        <div class="history-section">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Transaction Log</h3>
+            <div class="history-list" id="history-container">
+                <!-- Transactions will load dynamically -->
             </div>
         </div>
     </div>
@@ -206,6 +420,16 @@
         if (!localStorage.getItem('member_income_2')) localStorage.setItem('member_income_2', '1030229');
         if (!localStorage.getItem('member_income_3')) localStorage.setItem('member_income_3', '1451662');
 
+        // Initial Sample History
+        if (!localStorage.getItem('tx_history')) {
+            const initialTx = [
+                { name: "Nusrat jahan Nabila", amount: "1,451,662", date: "Today, 08:30 PM" },
+                { name: "Leona fil faixa", amount: "1,030,229", date: "Yesterday, 04:15 PM" },
+                { name: "Md Jehadul Islam", amount: "540,203", date: "15 Aug 2026, 11:00 AM" }
+            ];
+            localStorage.setItem('tx_history', JSON.stringify(initialTx));
+        }
+
         function login() {
             const pass = document.getElementById('pass-input').value.trim();
             const role = PASSWORDS[pass];
@@ -213,7 +437,7 @@
             if (role) {
                 document.getElementById('login-box').style.display = 'none';
                 document.getElementById('dashboard-box').style.display = 'block';
-                loadIncomes();
+                loadDashboardData();
 
                 if (role === 'captain') {
                     document.querySelectorAll('.admin-controls').forEach(el => el.style.display = 'block');
@@ -225,21 +449,59 @@
             }
         }
 
-        function loadIncomes() {
+        function loadDashboardData() {
+            let total = 0;
+
             for (let i = 1; i <= 3; i++) {
-                let saved = localStorage.getItem('member_income_' + i) || '0';
-                document.getElementById('income-' + i).innerText = '৳ ' + Number(saved).toLocaleString();
+                let saved = Number(localStorage.getItem('member_income_' + i) || '0');
+                total += saved;
+                document.getElementById('income-' + i).innerText = '৳ ' + saved.toLocaleString();
             }
+
+            document.getElementById('total-vault').innerText = '৳ ' + total.toLocaleString();
+            renderHistory();
         }
 
-        function updateIncome(id) {
+        function updateIncome(id, name) {
             let val = document.getElementById('input-' + id).value;
             if (val !== '') {
                 localStorage.setItem('member_income_' + id, val);
-                document.getElementById('income-' + id).innerText = '৳ ' + Number(val).toLocaleString();
                 document.getElementById('input-' + id).value = '';
-                alert('ইনকাম আপডেট সম্পন্ন হয়েছে!');
+
+                // Log Transaction History
+                let history = JSON.parse(localStorage.getItem('tx_history') || '[]');
+                let now = new Date();
+                let dateStr = now.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) + ', ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                history.unshift({ name: name, amount: Number(val).toLocaleString(), date: dateStr });
+                if (history.length > 5) history.pop();
+
+                localStorage.setItem('tx_history', JSON.stringify(history));
+
+                loadDashboardData();
+                alert('ইনকাম ও ট্রানজ্যাকশন হিস্ট্রি আপডেট করা হয়েছে!');
             }
+        }
+
+        function renderHistory() {
+            let history = JSON.parse(localStorage.getItem('tx_history') || '[]');
+            let container = document.getElementById('history-container');
+            container.innerHTML = '';
+
+            history.forEach(tx => {
+                container.innerHTML += `
+                    <div class="history-item">
+                        <div class="tx-user">
+                            <div class="tx-icon"><i class="fa-solid fa-arrow-down-left"></i></div>
+                            <div class="tx-info">
+                                <h5>${tx.name}</h5>
+                                <p>${tx.date}</p>
+                            </div>
+                        </div>
+                        <div class="tx-amount">+ ৳ ${tx.amount}</div>
+                    </div>
+                `;
+            });
         }
 
         function logout() {
